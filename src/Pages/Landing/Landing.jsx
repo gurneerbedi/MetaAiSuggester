@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect , useState} from "react";
 import { Button, Container, Typography, Box } from "@mui/material";
 import "./Landing.scss";
 import MetaLogo from "../../Images/metalogo.webp";
