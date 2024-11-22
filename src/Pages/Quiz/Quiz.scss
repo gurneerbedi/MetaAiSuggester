@@ -10,15 +10,44 @@
   position: relative;
   overflow: hidden;
 
+  &__question {
+    width: 400px;
+  }
+
+  &__title {
+    text-align: center;
+  }
+
   &__options {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 1rem;
   }
 
-  &__question {
-    width: 400px;
-    height: 200px;
+  &__option {
+    color: black;
+
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid transparent;
+  }
+
+  &__option:has(input[type="checkbox"]:checked) {
+    border: 1px solid blue;
+  }
+
+  input[type="checkbox"] {
+    visibility: hidden;
+    position: absolute;
+  }
+
+  input[type="checkbox"] + label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 2rem 1rem;
   }
 
   &__error {
