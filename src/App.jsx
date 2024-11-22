@@ -51,7 +51,6 @@ function App() {
               padding: "8px 20px",
               borderRadius: "24px",
             }}
-            fullWidth
             size="small"
             variant="contained"
             disableElevation
