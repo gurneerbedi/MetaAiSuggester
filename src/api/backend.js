@@ -24,7 +24,7 @@ const getProducts = async () => {
 
 const getQuestions = async () => {
   try {
-    const { data } = await axios.get(`${backendUrl}/`);
+    const { data } = await axios.get(`${backendUrl}/questions`);
     return data;
   } catch (error) {
     console.error("Could not get quiz questions:", error);
