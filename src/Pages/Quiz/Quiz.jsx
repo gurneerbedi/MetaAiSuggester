@@ -6,7 +6,7 @@ import { CircleAlert } from "lucide-react";
 import "./Quiz.scss";
 import axios from "axios";
 
-export default function Quiz() {
+export default function Quiz({ submitHandler }) {
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [responses, setResponses] = useState({});
@@ -90,8 +90,7 @@ export default function Quiz() {
       "http://localhost:8080/products",
       scores
     );
-    console.log(recommendations.data);
-    return recommendations.data;
+    submitHandler(recommendations.data);
   };
 
   useEffect(() => {
