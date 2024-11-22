@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Quiz from "./pages/Quiz";
+import Quiz from "./pages/Quiz/Quiz.jsx";
 
 import Landing from "./Pages/Landing/Landing.jsx";
 import { createTheme, ThemeProvider } from "@mui/material";
