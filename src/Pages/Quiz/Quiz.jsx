@@ -115,7 +115,7 @@ export default function Quiz({ submitHandler }) {
     }),
     show: {
       opacity: 1,
-      y: -50,
+      y: 0,
     },
     exit: (direction) => ({
       y: direction > 0 ? -200 : 200,
