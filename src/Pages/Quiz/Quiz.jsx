@@ -126,9 +126,9 @@ export default function Quiz({ submitHandler }) {
 
   return (
     <main className="quiz">
-      <FormProgress completed={currentQuestion} total={questions.length} />
       <form onSubmit={handleSubmit} noValidate>
         <AnimatePresence mode="wait" custom={direction}>
+          <FormProgress completed={currentQuestion} total={questions.length} />
           {questions.length > 0 && (
             <motion.div
               key={currentQuestion}
