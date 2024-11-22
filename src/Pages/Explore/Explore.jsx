@@ -1,5 +1,11 @@
+import SuccessStories from "../SuccessStories/SuccessStories";
+
 function Explore() {
-  return <div>Explore</div>;
+  return (
+    <>
+      <SuccessStories />
+    </>
+  );
 }
 
 export default Explore;
