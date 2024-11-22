@@ -1,0 +1,12 @@
+.progress {
+  &__item {
+    background-color: grey;
+    height: 10px;
+    flex: 1;
+    border-radius: 30px;
+
+    &--completed {
+      background-color: green;
+    }
+  }
+}

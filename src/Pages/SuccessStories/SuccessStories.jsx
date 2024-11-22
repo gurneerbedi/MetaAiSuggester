@@ -1,130 +1,39 @@
-import React, { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import {
+  Button,
   Typography,
-  Card,
-  CardContent,
   CardMedia,
-  Grid,
-  Container,
+  CardContent,
+  CardActions,
+  Card,
   Box,
-  Link,
+  Container,
 } from "@mui/material";
 import "./SuccessStories.scss";
-import {stories} from '/src/data/stories.js'
+import { stories } from "/src/data/stories.js";
 
 const SuccessStories = () => {
-  const StoryCard = ({ story }) => {
-    const [visible, setVisible] = useState(false);
-    const cardRef = useRef();
-
-    useEffect(() => {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-          }
-        },
-        { threshold: 0.1 }
-      );
-
-      if (cardRef.current) {
-        observer.observe(cardRef.current);
-      }
-
-      return () => {
-        if (cardRef.current) {
-          observer.unobserve(cardRef.current);
-        }
-      };
-    }, []);
-
-    return (
-      <Card
-        className="card"
-        ref={cardRef}
-        sx={{
-          maxWidth: 345,
-          mx: "auto",
-          opacity: visible ? 1 : 0,
-          transform: visible ? "translateY(0)" : "translateY(20px)",
-          transition: "opacity 0.6s ease, transform 0.6s ease",
-          boxShadow: 2,
-          borderRadius: 2,
-          backgroundColor: "white",
-          "&:hover": {
-            boxShadow: 4,
-            transform: "scale(1.02)",
-          },
-        }}
-      >
-        <CardMedia
-          component="img"
-          height="300"
-          image={story.image}
-          alt={story.name}
-          sx={{
-            borderTopLeftRadius: 8,
-            borderTopRightRadius: 8,
-            objectFit: "cover",
-            objectPosition: "center center",
-          }}
-        />
-        <CardContent>
-          <Typography
-            variant="h5"
-            component="div"
-            gutterBottom
-            sx={{ color: "#1c1e21", fontSize: { xs: "1rem", md: "1.25rem" } }}
-          >
-            {story.name}
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            sx={{ color: "#606770", fontSize: { xs: "0.875rem", md: "1rem" },  className:'text', }}
-          >
-            {story.title}
-          </Typography>
-          <Typography
-            variant="body2"
-            className='text'
-            sx={{
-              color: "#606770",
-              fontSize: { xs: "0.75rem", md: "0.875rem" },
-            }}
-          >
-            {story.story}
-          </Typography>
-          <Box mt={2}>
-            <Link
-              href="#"
-              underline="hover"
-              className='text'
-              sx={{
-                color: "#1877f2",
-                fontSize: { xs: "0.875rem", md: "0.875rem" },
-                fontWeight: 500,
-                display: "block",
-              }}
-            >
-              Learn more about {story.name}'s story
-            </Link>
-          </Box>
-        </CardContent>
-      </Card>
-    );
+  const container = {
+    hidden: { opacity: 1 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
   };
-
+  const item = {
+    hidden: { opacity: 0, y: 50 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
   return (
-    <Container
-      maxWidth="lg"
-      sx={{
-        py: 4,
-        backgroundColor: "#FFFFFF",
-        borderRadius: 4,
-        boxShadow: 1,
-        px: { xs: 2, sm: 3, md: 4 }, // Responsive padding
-      }}
-    >
+    <main>
       <Typography
         sx={{
           fontWeight: "medium",
@@ -142,29 +51,113 @@ const SuccessStories = () => {
           textAlign: "center",
           color: "text.secondary",
           width: "37rem",
-          margin: "0 auto 4rem auto",
+          margin: "0 auto 2rem auto",
         }}
       >
-        Discover how Meta's innovative tools and platforms have empowered
+        iscover how Meta's innovative tools and platforms have empowered
         individuals from diverse backgrounds to achieve their goals, break
         barriers, and transform their lives. From entrepreneurs scaling
         businesses to creatives redefining their industries, these are the
         stories of growth, resilience, and success.
       </Typography>
-      <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
-        {stories.map((story) => (
-          <Grid
-            item
-            xs={12} 
-            sm={6} 
-            md={4} 
-            key={story.id}
+      {stories.length > 0 && (
+        <Container
+          sx={{
+            width: "100%",
+            padding: "1rem",
+          }}
+        >
+          <motion.div
+            variants={container}
+            initial="hidden"
+            animate="show"
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "3rem",
+              justifyContent: "center",
+            }}
           >
-            <StoryCard story={story} />
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+            {stories.map((story, index) => (
+              <motion.div key={index} variants={item}>
+                <Card
+                  className="card"
+                  sx={{
+                    maxWidth: 320,
+                    height: "26.25rem",
+                    borderRadius: "1.25rem",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <CardMedia
+                    sx={{ height: "15rem" }}
+                    image={story.image}
+                    title="meta ai"
+                  />
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      flexGrow: "1",
+                    }}
+                  >
+                    <CardContent
+                      sx={{ padding: "1.5rem 1.5rem 0.5rem 1.5rem" }}
+                    >
+                      <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="h3"
+                        sx={{ fontWeight: "medium", fontSize: "1.125rem" }}
+                      >
+                        {story.name}
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          color: "text.secondary",
+                          fontSize: "0.8125rem",
+                        }}
+                      >
+                        {story.title}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "text.primary",
+                          fontWeight: "medium",
+                          fontSize: "0.6875rem",
+                          marginTop: "0.75rem",
+                        }}
+                      >
+                        {story.story}
+                      </Typography>
+                    </CardContent>
+                    <CardActions sx={{ padding: "0.5rem 1rem 1rem 1rem" }}>
+                      <Button
+                        sx={{
+                          textTransform: "capitalize",
+                          fontSize: "0.75rem",
+                          padding: "0.5rem 1.25rem",
+                          borderRadius: "1.5rem",
+                        }}
+                        size="small"
+                        variant="outlined"
+                        disableElevation
+                      >
+                       {story.name}'s story
+                      </Button>
+                    </CardActions>
+                  </Box>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </Container>
+      )}
+    </main>
   );
 };
 
