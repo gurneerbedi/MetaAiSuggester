@@ -62,7 +62,7 @@ const LandingPage = () => {
               color="secondary"
               size="large"
               className="landing__button"
-              onClick={() => navigate("/results")}
+              onClick={() => navigate("/quiz")}
             >
               Take the Quiz
             </Button>
