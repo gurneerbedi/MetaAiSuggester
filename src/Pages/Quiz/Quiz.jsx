@@ -126,9 +126,9 @@ export default function Quiz({ submitHandler }) {
 
   return (
     <main className="quiz">
-      <FormProgress completed={currentQuestion} total={questions.length} />
       <form onSubmit={handleSubmit} noValidate>
         <AnimatePresence mode="wait" custom={direction}>
+          <FormProgress completed={currentQuestion} total={questions.length} />
           {questions.length > 0 && (
             <motion.div
               key={currentQuestion}
@@ -139,11 +139,11 @@ export default function Quiz({ submitHandler }) {
               transition={{ duration: 0.5 }}
               className="quiz__question"
               custom={direction}
-              layout
             >
               <h1 className="quiz__title">
                 {questions[currentQuestion].question}
               </h1>
+              <p className="quiz__instruction">(Select all that apply)</p>
               <div className="quiz__options">
                 {questions[currentQuestion].options.map(
                   (option, optionIndex) => (

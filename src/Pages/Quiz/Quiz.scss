@@ -8,8 +8,23 @@
   background-size: 400% 400%;
   animation: gradientShift 12s ease infinite;
 
+  &__progress {
+    width: 300px;
+    margin: 0 auto;
+    max-width: 100%;
+
+    display: flex;
+    gap: 4px;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  &__instruction {
+    color: grey;
+    margin-bottom: 1rem;
+  }
+
   &__question {
-    width: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,6 +34,12 @@
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin-top: 3rem;
+    max-width: 600px;
+    margin: 0 auto;
+
+    @media (max-width: 768px) {
+      padding: 1rem;
+    }
   }
 
   &__title {
@@ -45,6 +66,10 @@
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
+
+    @media (max-width: 768px) {
+      padding: 0;
+    }
 
     &:hover {
       border: 2px solid #5b7087;
@@ -101,7 +126,9 @@
     margin-right: 0.5rem;
   }
 }
+
 form {
+  width: 100%;
   font-family: "Montserrat", "serif";
   button {
     font-family: "Montserrat", "serif";
