@@ -3,6 +3,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Results from "./Pages/Results/Results.jsx";
 import Explore from "./Pages/Explore/Explore.jsx";
+import SuccessStories from "./Pages/SuccessStories/SuccessStories.jsx";
 
 const theme = createTheme({
   typography: {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/results" element={<Results />} />
           <Route path="/explore" element={<Explore />} />
+          <Route path="/success-stories" element={<SuccessStories />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import ProductCard from "../../components/ProductCard";
+import ProductCard from "../../components/ProductCard/ProductCard.jsx";
 import { Typography, Container } from "@mui/material";
 import { motion } from "framer-motion";
 import * as backend from "../../api/backend.js";
