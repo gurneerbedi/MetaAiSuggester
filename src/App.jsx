@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import * as React from "react";
 import cardImage from "../assets/images/placeholder-card-img.jpg";
 import {
@@ -61,6 +62,13 @@ function App() {
       </Card>
     </ThemeProvider>
   );
+=======
+import LandingPage from "./Pages/Landing/Landing";
+
+function App() {
+  return <LandingPage/>
+
+>>>>>>> develop
 }
 
 export default App;
