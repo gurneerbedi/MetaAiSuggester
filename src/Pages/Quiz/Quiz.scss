@@ -1,0 +1,32 @@
+.quiz {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #a0c4ff, #f4a8d2, #a7c7f5, #81e8e2);
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+  position: relative;
+  overflow: hidden;
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__question {
+    &--hidden {
+      display: none;
+    }
+  }
+
+  &__error {
+    color: red;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+}
