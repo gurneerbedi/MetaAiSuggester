@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getQuestions } from "../../api/backend";
 import { motion, AnimatePresence } from "framer-motion";
 import { CircleAlert } from "lucide-react";
+import FormProgress from "../../components/FormProgress/FormProgress";
 
 import "./Quiz.scss";
 import axios from "axios";
@@ -125,6 +126,7 @@ export default function Quiz({ submitHandler }) {
 
   return (
     <main className="quiz">
+      <FormProgress completed={currentQuestion} total={questions.length} />
       <form onSubmit={handleSubmit} noValidate>
         <AnimatePresence mode="wait" custom={direction}>
           {questions.length > 0 && (
