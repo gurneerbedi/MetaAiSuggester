@@ -139,7 +139,6 @@ export default function Quiz({ submitHandler }) {
               transition={{ duration: 0.5 }}
               className="quiz__question"
               custom={direction}
-              layout
             >
               <h1 className="quiz__title">
                 {questions[currentQuestion].question}
