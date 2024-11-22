@@ -1,0 +1,66 @@
+export const stories = [
+    {
+      id: 1,
+      name: "John Doe",
+      title: "Entrepreneur",
+      story: "Using this platform changed my business trajectory...",
+      image: "/assets/Images/SuccessStories/person10.jpg",
+    },
+    {
+      id: 2,
+      name: "Jane Smith",
+      title: "Designer",
+      story: "This tool made my design process seamless and intuitive...",
+      image: "/assets/Images/SuccessStories/person6.jpg",
+    },
+    {
+      id: 3,
+      name: "Alex Brown",
+      title: "Developer",
+      story: "It helped me achieve milestones faster than ever before!",
+      image: "/assets/Images/SuccessStories/person9.jpg",
+    },
+    {
+      id: 4,
+      name: "Jack Green",
+      title: "Chef",
+      story: "This platform transformed the way I showcase my work.",
+      image: "/assets/Images/SuccessStories/person5.jpg",
+    },
+    {
+      id: 5,
+      name: "Liam Johnson",
+      title: "Freelancer",
+      story: "The tools here made my freelance work incredibly efficient.",
+      image: "/assets/Images/SuccessStories/person11.jpg",
+    },
+    {
+      id: 6,
+      name: "Emma Davis",
+      title: "Consultant",
+      story: "Our team's productivity skyrocketed thanks to this tool.",
+      image: "/assets/Images/SuccessStories/person12.jpg",
+    },
+    {
+      id: 7,
+      name: "Lina Wilson",
+      title: "Artist",
+      story: "I can finally focus on creating, thanks to these features.",
+      image: "/assets/Images/SuccessStories/person2.jpg",
+    },
+    {
+      id: 8,
+      name: "Olivia Martinez",
+      title: "Photographer",
+      story: "My workflow has never been smoother. Highly recommended!",
+      image: "/assets/Images/SuccessStories/person8.jpg",
+    },
+    {
+      id: 9,
+      name: "Carla Taylor",
+      title: "Startup Founder",
+      story: "Scaling my startup was easier than I ever imagined.",
+      image: "/assets/Images/SuccessStories/person3.jpg",
+    },
+  ];
+
