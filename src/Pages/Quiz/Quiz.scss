@@ -40,7 +40,6 @@
     border-radius: 10px;
     padding: 1rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
     cursor: pointer;
     border: 2px solid transparent;
     flex-direction: column;
@@ -48,8 +47,7 @@
     gap: 1rem;
 
     &:hover {
-      border-color: #1976d2;
-      transform: translateY(-2px);
+      border: 2px solid #5b7087;
     }
 
     &.quiz__checkbox:checked + & {
