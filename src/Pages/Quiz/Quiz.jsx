@@ -110,22 +110,16 @@ export default function Quiz({ submitHandler }) {
 
   const variants = {
     enter: (direction) => ({
-      y: direction > 0 ? 400 : -400,
+      y: direction > 0 ? 200 : -200,
       opacity: 0,
-      transition: {
-        duration: 0.6,
-      },
     }),
     show: {
       opacity: 1,
       y: -50,
     },
     exit: (direction) => ({
-      y: direction > 0 ? -400 : 400,
+      y: direction > 0 ? -200 : 200,
       opacity: 0,
-      transition: {
-        duration: 0.5,
-      },
     }),
   };
 
@@ -140,8 +134,8 @@ export default function Quiz({ submitHandler }) {
               animate="show"
               exit="exit"
               variants={variants}
-              transition={{ duration: 0.3 }}
               className="quiz__question"
+              transition={{ duration: 0.5 }}
               custom={direction}
               layout
             >
