@@ -147,6 +147,9 @@ export default function Quiz({ submitHandler }) {
                   (option, optionIndex) => (
                     <motion.div
                       whileTap={{ scale: 0.98 }}
+                      transition={{
+                        duration: 0.01,
+                      }}
                       className="quiz__option"
                       key={optionIndex}
                     >
