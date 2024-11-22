@@ -1,0 +1,92 @@
+.landing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #f0f4fc, #ffffff);
+
+    &__container {
+        padding: 1rem;
+        background: #ffffff;
+        border-radius: 50px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 95%;
+        max-width: 600px;
+
+        @media (min-width: 768px){
+            width: 85%;
+            padding: 1.5rem;
+        }
+        @media (min-width: 1024px){
+            width: 600px;
+            padding: 2rem;
+        }
+    }
+
+    &__title {
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.2;
+        color: #1a1a1a;
+        padding: 0.5rem;
+
+          @media (min-width: 768px) { 
+            font-size: 2rem; 
+        }
+        @media (min-width: 1024px) { 
+            font-size: 2.5rem; 
+            padding: 1rem;
+        }
+    }
+  
+    &__buttons {
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+
+          @media (min-width: 768px) { 
+            flex-direction: row;
+            justify-content: center;
+        }
+         @media (min-width: 1024px) { 
+            gap: 1rem;
+        }
+    }
+
+    &__button {
+        padding: 0.6rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 100px !important;
+        transition: all 0.3s ease;
+
+        @media (min-width: 768px){
+            padding: 0.8rem 2rem;
+        }
+          @media (min-width: 1024px){
+            font-size: 1rem;
+        }
+
+        &--primary {
+            background-color: #1976d2;
+            color: white;
+
+            &:hover {
+                background-color: #1565c0;
+                transform: translateY(-2px);
+            }
+        }
+
+        &--secondary {
+            border: 2px solid #1976d2;
+            color: #1976d2;
+
+            &:hover {
+                border-color: #1565c0;
+                color: #1565c0;
+                background-color: rgba(21, 101, 192, 0.05);
+                transform: translateY(-2px);
+            }
+        }
+    }
+}
