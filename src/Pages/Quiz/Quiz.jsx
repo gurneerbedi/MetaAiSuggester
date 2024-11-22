@@ -11,6 +11,7 @@ export default function Quiz() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [responses, setResponses] = useState({});
   const [errors, setErrors] = useState({});
+  const [direction, setDirection] = useState(1);
 
   const handleCheckboxChange = (e) => {
     const { checked } = e.target;
@@ -31,6 +32,7 @@ export default function Quiz() {
   };
 
   const validateCurrentQuestion = () => {
+    console.log("Validated question", currentQuestion);
     const options = responses[currentQuestion];
     if (!Object.values(options).some((selection) => selection)) {
       setErrors((prev) => ({
@@ -45,11 +47,13 @@ export default function Quiz() {
   const handleNext = () => {
     if (validateCurrentQuestion()) {
       setCurrentQuestion((prev) => Math.min(prev + 1, questions.length - 1));
+      setDirection(1);
     }
   };
 
   const handlePrevious = () => {
     setCurrentQuestion((prev) => Math.max(prev - 1, 0));
+    setDirection(-1);
   };
 
   const validateResponses = () => {
@@ -67,6 +71,7 @@ export default function Quiz() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Form submitted at question", currentQuestion);
     if (!validateResponses()) return;
     const scores = {};
     Object.entries(responses).forEach(([questionIndex, options]) => {
@@ -104,73 +109,87 @@ export default function Quiz() {
     });
   }, []);
 
-  const slideVariants = {
-    enter: {
-      y: 50,
+  const variants = {
+    enter: (direction) => ({
+      y: direction > 0 ? 1000 : -1000,
       opacity: 0,
-    },
+    }),
     center: {
-      y: 0,
       opacity: 1,
-    },
-    exit: {
       y: -50,
-      opacity: 0,
     },
+    exit: (direction) => ({
+      y: direction > 0 ? -1000 : 1000,
+      opacity: 0,
+    }),
   };
 
   return (
     <main className="quiz">
       <form onSubmit={handleSubmit} noValidate>
-        <AnimatePresence mode="wait">
-          {questions.length > 0 &&
-            questions.map((question, questionIndex) => {
-              return (
-                <motion.div
-                  key={currentQuestion}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  variants={slideVariants}
-                  transition={{ duration: 0.3 }}
-                  className="quiz__question"
-                >
-                  <h1>{question.question}</h1>
-                  <div className="quiz__options">
-                    {question.options.map((option, optionIndex) => {
-                      return (
-                        <div className="quiz__option" key={optionIndex}>
-                          <input
-                            type="checkbox"
-                            name={`question-${questionIndex}-option-${optionIndex}`}
-                            id={`question-${questionIndex}-option-${optionIndex}`}
-                            data-question={questionIndex}
-                            data-option={optionIndex}
-                            onChange={handleCheckboxChange}
-                            checked={responses[questionIndex][optionIndex]}
-                          />
-                          <label
-                            htmlFor={`question-${questionIndex}-option-${optionIndex}`}
-                            className="quiz__option"
-                          >
-                            {option.text}
-                          </label>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  {errors[questionIndex] && (
-                    <p className="quiz__error">
-                      <CircleAlert size={16} /> {errors[questionIndex]}
-                    </p>
-                  )}
-                </motion.div>
-              );
-            })}
+        <AnimatePresence mode="wait" custom={direction}>
+          {questions.length > 0 && (
+            <motion.div
+              key={currentQuestion}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              variants={variants}
+              transition={{ duration: 0.3 }}
+              className="quiz__question"
+              custom={direction}
+            >
+              <h1>{questions[currentQuestion].question}</h1>
+              <div className="quiz__options">
+                {questions[currentQuestion].options.map(
+                  (option, optionIndex) => (
+                    <div className="quiz__option" key={optionIndex}>
+                      <input
+                        type="checkbox"
+                        name={`question-${currentQuestion}-option-${optionIndex}`}
+                        id={`question-${currentQuestion}-option-${optionIndex}`}
+                        data-question={currentQuestion}
+                        data-option={optionIndex}
+                        onChange={handleCheckboxChange}
+                        checked={responses[currentQuestion][optionIndex]}
+                      />
+                      <label
+                        htmlFor={`question-${currentQuestion}-option-${optionIndex}`}
+                        className="quiz__option"
+                      >
+                        {option.text}
+                      </label>
+                    </div>
+                  )
+                )}
+              </div>
+              {errors[currentQuestion] && (
+                <p className="quiz__error">
+                  <CircleAlert size={16} /> {errors[currentQuestion]}
+                </p>
+              )}
+            </motion.div>
+          )}
         </AnimatePresence>
-        <button type="submit" className="quiz__submit">
-          Submit
-        </button>
+        <div>
+          <button
+            type="button"
+            onClick={handlePrevious}
+            disabled={currentQuestion === 0}
+          >
+            Previous
+          </button>
+
+          {currentQuestion < questions.length - 1 ? (
+            <button key="submit-btn" type="button" onClick={handleNext}>
+              Next
+            </button>
+          ) : (
+            <button key="next-btn" type="submit">
+              Submit
+            </button>
+          )}
+        </div>
       </form>
     </main>
   );
