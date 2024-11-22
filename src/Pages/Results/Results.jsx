@@ -1,19 +1,8 @@
-import { useState, useEffect } from "react";
 import ProductCard from "../../components/ProductCard";
 import { Typography, Container } from "@mui/material";
 import { motion } from "framer-motion";
-import * as backend from "../../api/backend.js";
 
-function Results() {
-  const [productList, setProductList] = useState([]);
-
-  useEffect(() => {
-    const loadProductList = async () => {
-      setProductList(await backend.getProducts());
-    };
-    loadProductList();
-  }, []);
-
+function Results({ productList }) {
   const container = {
     hidden: { opacity: 1 },
     show: {
