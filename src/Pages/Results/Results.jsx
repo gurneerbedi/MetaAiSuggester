@@ -14,8 +14,29 @@ function Results() {
     loadProductList();
   }, []);
 
+  const container = {
+    hidden: { opacity: 1 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 50 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+
   return (
-    <>
+    <main>
       <Typography
         sx={{
           fontWeight: "medium",
@@ -38,32 +59,36 @@ function Results() {
       >
         We&apos;ve curated a list of Meta AI features that will help you and
         your business thrive. Browse, learn more, or head over to our user
-        stories to see how these Meta AI features have succesfully helped
+        stories to see how these Meta AI features have successfully helped
         others.
       </Typography>
-      <Container
-        sx={{
-          width: "100%",
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "3rem",
-          padding: "1rem",
-          justifyContent: "center",
-        }}
-      >
-        {productList.map((product, index) => (
+      {productList.length && (
+        <Container
+          sx={{
+            width: "100%",
+            padding: "1rem",
+          }}
+        >
           <motion.div
-            key={product.key}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
+            variants={container}
+            initial="hidden"
+            animate="show"
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "3rem",
+              justifyContent: "center",
+            }}
           >
-            <ProductCard key={product.key} product={product} />
+            {productList.map((product, index) => (
+              <motion.div key={index} variants={item}>
+                <ProductCard key={product.id} product={product} />
+              </motion.div>
+            ))}
           </motion.div>
-        ))}
-      </Container>
-    </>
+        </Container>
+      )}
+    </main>
   );
 }
 
