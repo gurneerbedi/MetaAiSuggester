@@ -3,10 +3,13 @@ import Quiz from "./pages/Quiz/Quiz.jsx";
 
 import Landing from "./Pages/Landing/Landing.jsx";
 import { createTheme, ThemeProvider } from "@mui/material";
+import Header from "./components/Header/Header.jsx";
 import Results from "./Pages/Results/Results.jsx";
 import Explore from "./Pages/Explore/Explore.jsx";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import "./App.scss";
 
 const theme = createTheme({
   typography: {
@@ -25,6 +28,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <Header />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route

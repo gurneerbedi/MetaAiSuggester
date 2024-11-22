@@ -1,4 +1,4 @@
-import ProductCard from "../../components/ProductCard";
+import ProductCard from "../../components/ProductCard/ProductCard";
 import { Typography, Container } from "@mui/material";
 import { motion } from "framer-motion";
 
@@ -51,7 +51,7 @@ function Results({ productList }) {
         stories to see how these Meta AI features have successfully helped
         others.
       </Typography>
-      {productList.length && (
+      {productList.length > 0 && (
         <Container
           sx={{
             width: "100%",
