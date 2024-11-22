@@ -143,6 +143,7 @@ export default function Quiz({ submitHandler }) {
               <h1 className="quiz__title">
                 {questions[currentQuestion].question}
               </h1>
+              <p className="quiz__instruction">(Select all that apply)</p>
               <div className="quiz__options">
                 {questions[currentQuestion].options.map(
                   (option, optionIndex) => (
