@@ -110,22 +110,16 @@ export default function Quiz({ submitHandler }) {
 
   const variants = {
     enter: (direction) => ({
-      y: direction > 0 ? 400 : -400,
+      y: direction > 0 ? 200 : -200,
       opacity: 0,
-      transition: {
-        duration: 0.6,
-      },
     }),
     show: {
       opacity: 1,
-      y: -50,
+      y: 0,
     },
     exit: (direction) => ({
-      y: direction > 0 ? -400 : 400,
+      y: direction > 0 ? -200 : 200,
       opacity: 0,
-      transition: {
-        duration: 0.5,
-      },
     }),
   };
 
@@ -140,7 +134,7 @@ export default function Quiz({ submitHandler }) {
               animate="show"
               exit="exit"
               variants={variants}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.5 }}
               className="quiz__question"
               custom={direction}
               layout
@@ -151,7 +145,14 @@ export default function Quiz({ submitHandler }) {
               <div className="quiz__options">
                 {questions[currentQuestion].options.map(
                   (option, optionIndex) => (
-                    <div className="quiz__option" key={optionIndex}>
+                    <motion.div
+                      whileTap={{ scale: 0.98 }}
+                      transition={{
+                        duration: 0.01,
+                      }}
+                      className="quiz__option"
+                      key={optionIndex}
+                    >
                       <input
                         type="checkbox"
                         name={`question-${currentQuestion}-option-${optionIndex}`}
@@ -168,7 +169,7 @@ export default function Quiz({ submitHandler }) {
                       >
                         {option.text}
                       </label>
-                    </div>
+                    </motion.div>
                   )
                 )}
               </div>
