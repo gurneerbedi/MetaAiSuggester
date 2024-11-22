@@ -111,16 +111,22 @@ export default function Quiz() {
 
   const variants = {
     enter: (direction) => ({
-      y: direction > 0 ? 1000 : -1000,
+      y: direction > 0 ? 400 : -400,
       opacity: 0,
+      transition: {
+        duration: 0.6,
+      },
     }),
-    center: {
+    show: {
       opacity: 1,
       y: -50,
     },
     exit: (direction) => ({
-      y: direction > 0 ? -1000 : 1000,
+      y: direction > 0 ? -400 : 400,
       opacity: 0,
+      transition: {
+        duration: 0.5,
+      },
     }),
   };
 
@@ -132,14 +138,17 @@ export default function Quiz() {
             <motion.div
               key={currentQuestion}
               initial="enter"
-              animate="center"
+              animate="show"
               exit="exit"
               variants={variants}
               transition={{ duration: 0.3 }}
               className="quiz__question"
               custom={direction}
+              layout
             >
-              <h1>{questions[currentQuestion].question}</h1>
+              <h1 className="quiz__title">
+                {questions[currentQuestion].question}
+              </h1>
               <div className="quiz__options">
                 {questions[currentQuestion].options.map(
                   (option, optionIndex) => (
@@ -152,10 +161,11 @@ export default function Quiz() {
                         data-option={optionIndex}
                         onChange={handleCheckboxChange}
                         checked={responses[currentQuestion][optionIndex]}
+                        className="quiz__checkbox"
                       />
                       <label
                         htmlFor={`question-${currentQuestion}-option-${optionIndex}`}
-                        className="quiz__option"
+                        className="quiz__label"
                       >
                         {option.text}
                       </label>
