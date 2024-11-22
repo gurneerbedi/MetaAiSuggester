@@ -134,8 +134,8 @@ export default function Quiz({ submitHandler }) {
               animate="show"
               exit="exit"
               variants={variants}
-              className="quiz__question"
               transition={{ duration: 0.5 }}
+              className="quiz__question"
               custom={direction}
               layout
             >
@@ -145,7 +145,11 @@ export default function Quiz({ submitHandler }) {
               <div className="quiz__options">
                 {questions[currentQuestion].options.map(
                   (option, optionIndex) => (
-                    <div className="quiz__option" key={optionIndex}>
+                    <motion.div
+                      whileTap={{ scale: 0.98 }}
+                      className="quiz__option"
+                      key={optionIndex}
+                    >
                       <input
                         type="checkbox"
                         name={`question-${currentQuestion}-option-${optionIndex}`}
@@ -162,7 +166,7 @@ export default function Quiz({ submitHandler }) {
                       >
                         {option.text}
                       </label>
-                    </div>
+                    </motion.div>
                   )
                 )}
               </div>
