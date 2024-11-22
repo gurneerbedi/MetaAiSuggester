@@ -16,6 +16,9 @@ export default function Header() {
         <Link to="/quiz" className="header__link">
           Quiz
         </Link>
+        <Link to="/explore" className="header__link">
+          Explore
+        </Link>
       </nav>
     </header>
   );
