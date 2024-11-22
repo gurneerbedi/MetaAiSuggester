@@ -180,7 +180,7 @@ export default function Quiz({ submitHandler }) {
             </motion.div>
           )}
         </AnimatePresence>
-        <div>
+        <div className="quiz__button-container">
           <button
             type="button"
             onClick={handlePrevious}
